@@ -183,13 +183,30 @@
        </widget>
       </item>
       <item row="6" column="0" >
+       <widget class="QLabel" name="anonymousIdentityLabel" >
+        <property name="text" >
+         <string>Anonymous Identity</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1" >
+       <widget class="QLineEdit" name="anonymousIdentityEdit" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="toolTip" >
+         <string>Anonymous Identity for EAP methods</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" >
        <widget class="QLabel" name="passwordLabel" >
         <property name="text" >
          <string>Password</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1" >
+      <item row="7" column="1" >
        <widget class="QLineEdit" name="passwordEdit" >
         <property name="enabled" >
          <bool>false</bool>
@@ -202,21 +219,21 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0" >
+      <item row="8" column="0" >
        <widget class="QLabel" name="cacertLabel" >
         <property name="text" >
          <string>CA certificate</string>
         </property>
        </widget>
       </item>
-      <item row="7" column="1" >
+      <item row="8" column="1" >
        <widget class="QLineEdit" name="cacertEdit" >
         <property name="enabled" >
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="8" column="0" colspan="2" >
+      <item row="9" column="0" colspan="2" >
        <widget class="QGroupBox" name="wepBox" >
         <property name="enabled" >
          <bool>true</bool>
@@ -296,7 +313,7 @@
         </layout>
        </widget>
       </item>
-      <item row="9" column="0" colspan="2" >
+      <item row="10" column="0" colspan="2" >
        <widget class="QGroupBox" name="optionalSettingsBox" >
         <property name="enabled" >
          <bool>true</bool>
@@ -410,6 +427,7 @@
   <tabstop>pskEdit</tabstop>
   <tabstop>eapSelect</tabstop>
   <tabstop>identityEdit</tabstop>
+  <tabstop>anonymousIdentityEdit</tabstop>
   <tabstop>passwordEdit</tabstop>
   <tabstop>cacertEdit</tabstop>
   <tabstop>wep0Radio</tabstop>

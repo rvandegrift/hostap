@@ -114,6 +114,7 @@ void NetworkConfig::authChanged(int sel)
 		sel == AUTH_WPA2_EAP;
 	eapSelect->setEnabled(eap);
 	identityEdit->setEnabled(eap);
+	anonymousIdentityEdit->setEnabled(eap);
 	passwordEdit->setEnabled(eap);
 	cacertEdit->setEnabled(eap);
 	phase2Select->setEnabled(eap);
@@ -358,6 +359,12 @@ void NetworkConfig::addNetwork()
 				true);
 	else
 		setNetworkParam(id, "identity", "NULL", false);
+	if (anonymousIdentityEdit->isEnabled() && anonymousIdentityEdit->text().length() > 0)
+		setNetworkParam(id, "anonymous_identity",
+				anonymousIdentityEdit->text().toAscii().constData(),
+				true);
+	else
+		setNetworkParam(id, "anonymous_identity", "NULL", false);
 	if (passwordEdit->isEnabled() && passwordEdit->text().length() > 0 &&
 	    strcmp(passwordEdit->text().toAscii().constData(),
 		   WPA_GUI_KEY_DATA) != 0)
@@ -582,6 +589,17 @@ void NetworkConfig::paramsFromConfig(int network_id)
 		if (pos)
 			*pos = '\0';
 		identityEdit->setText(reply + 1);
+	}
+
+	snprintf(cmd, sizeof(cmd), "GET_NETWORK %d anonymous_identity", network_id);
+	reply_len = sizeof(reply) - 1;
+	if (wpagui->ctrlRequest(cmd, reply, &reply_len) >= 0 &&
+	    reply_len >= 2 && reply[0] == '"') {
+		reply[reply_len] = '\0';
+		pos = strchr(reply + 1, '"');
+		if (pos)
+			*pos = '\0';
+		anonymousIdentityEdit->setText(reply + 1);
 	}
 
 	snprintf(cmd, sizeof(cmd), "GET_NETWORK %d password", network_id);
